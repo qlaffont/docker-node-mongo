@@ -1,0 +1,23 @@
+version: "3"
+
+services:
+  node:
+    image: node:latest
+    user: "node"
+    working_dir: /home/node/app
+    environment:
+      NODE_ENV: development
+    volumes:
+      - ./app/:/home/node/app
+    ports:
+      - "127.0.0.1:3000:3000"
+  mongodb:
+    image: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+    volumes:
+      - ./db/:/data/db
+    ports:
+      - "127.0.0.1:27017:27017"
